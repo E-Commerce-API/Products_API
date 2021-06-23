@@ -9,14 +9,8 @@ const productsSchema = new Schema({
   description: String,
   category: String,
   defaultPrice: String,
-  features: [{
-    feature: String,
-    value: String
-  }],
-  styles: [StylesSchema],
-  relatedProducts:[Number]
 })
 
-const Product = mongoose.model("Product", productsSchema);
+const Products = mongoose.model("Products", productsSchema);
 
-module.exports = Product;
+module.exports = Products;

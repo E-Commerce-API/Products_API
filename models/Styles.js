@@ -2,23 +2,14 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const stylesSchema = new Schema(
-  {
+const stylesSchema = new Schema({
+    id: Number,
     productId: Number,
-    results: [{
-      styleId: String,
-      name: String,
-      originalPrice: String,
-      salePrice: String,
-      isDefault: Boolean,
-      photos: [{
-        thumbnailUrl: String,
-        url: String,
-      }],
-      skus: Schema.Types.Mixed,
-    }]
-  }
-)
+    name: String,
+    salePrice: String,
+    originalPrice: String,
+    isDefault: Boolean,
+})
 
 const Styles = mongoose.model("Styles", stylesSchema);
 

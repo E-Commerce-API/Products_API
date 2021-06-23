@@ -13,6 +13,8 @@ mongoose
     .then(() => console.log("connected to database"))
     .catch(err => console.log(err));
 
+require("./routes/productsRoutes")(app);
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("server is up and running on port: " + port);
