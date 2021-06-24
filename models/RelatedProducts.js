@@ -8,6 +8,6 @@ const relatedProductsSchema = new Schema({
   realtedProuctId: Number,
 })
 
-const RelatedProducts = mongoose.model("RelatedProducts", relatedProductsSchema);
+const RelatedProducts = mongoose.model("RelatedProducts", relatedProductsSchema, "RelatedProducts");
 
 module.exports = RelatedProducts;

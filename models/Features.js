@@ -9,6 +9,6 @@ const featuresSchema = new Schema({
   value: String
 })
 
-const Features = mongoose.model("Features", featuresSchema);
+const Features = mongoose.model("Features", featuresSchema, "Features");
 
 module.exports = Features;

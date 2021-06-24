@@ -8,9 +8,9 @@ const productsSchema = new Schema({
   slogan: String,
   description: String,
   category: String,
-  defaultPrice: String,
+  default_price: Number,
 })
 
-const Products = mongoose.model("Products", productsSchema);
+const Products = mongoose.model("Products", productsSchema, "Products");
 
 module.exports = Products;

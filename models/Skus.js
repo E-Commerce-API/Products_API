@@ -9,6 +9,6 @@ const skusSchema = new Schema({
   quantity: Number
 })
 
-const Skus = mongoose.model("Skus", skusSchema);
+const Skus = mongoose.model("Skus", skusSchema, "Skus");
 
 module.exports = Skus;

@@ -11,6 +11,6 @@ const stylesSchema = new Schema({
     isDefault: Boolean,
 })
 
-const Styles = mongoose.model("Styles", stylesSchema);
+const Styles = mongoose.model("Styles", stylesSchema, "Styles");
 
 module.exports = Styles;

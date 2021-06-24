@@ -9,6 +9,6 @@ const photosSchema = new Schema({
   thumbnailUrl: String
 })
 
-const Photos = mongoose.model("Photos", photosSchema);
+const Photos = mongoose.model("Photos", photosSchema, "Photos");
 
 module.exports = Photos;
