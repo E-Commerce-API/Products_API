@@ -7,12 +7,12 @@ let RelatedProducts = require('../models/RelatedProducts');
 
 module.exports = (app) => {
 
-  // does this need to be done???
-  app.get('/products', async (req, res) => {
-    await Product.find()
-    .then((product) => res.json(product))
-    .catch((err) => res.status(400).json(`Error: ${err}`));
-  });
+  //************ does this need to be done??? *************
+  // app.get('/products', async (req, res) => {
+  //   await Product.find()
+  //   .then((product) => res.json(product))
+  //   .catch((err) => res.status(400).json(`Error: ${err}`));
+  // });
 
   app.get('/products/:product_id', async (req, res) => {
     const id = req.params.product_id;
@@ -32,15 +32,16 @@ module.exports = (app) => {
   });
 
   app.get('/products/:product_id/styles', async (req, res) => {
-    await Product.findById(req.params.id)
-      .then((styles) => res.json(styles))
-      .catch((err) => res.status(400).json(`Error: ${err}`));
+    const id = req.params.product_id;
+    const styles = await Styles.find({"productId": id});
+    res.send(styles);
   });
 
   app.get('/products/:product_id/related', async (req, res) => {
-    await Product.findById(req.params.id)
-      .then((product) => res.json(product))
-      .catch((err) => res.status(400).json(`Error: ${err}`));
+    const id = req.params.product_id;
+    const relatedProd = await RelatedProducts.find({"current_product_id": 1}, {"_id": 0, "id": 0, "current_product_id": 0});
+    const relatedProds = relatedProd.map(item => item.related_product_id);
+    res.send(relatedProds);
     });
 
   // app.get('/api/test', async (req, res) => {
