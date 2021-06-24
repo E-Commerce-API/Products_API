@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const relatedProductsSchema = new Schema({
   id: Number,
   currentProuctId: Number,
-  realtedProuctId: Number,
+  relatedProuctId: Number,
 })
 
 const RelatedProducts = mongoose.model("RelatedProducts", relatedProductsSchema, "RelatedProducts");
