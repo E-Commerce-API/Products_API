@@ -5,12 +5,11 @@ const app = express();
 app.use(express.static(__dirname + '/dist'));
 app.use(express.json());
 
+const db = 'mongodb://localhost:27017/sdcproducts';
+
 mongoose
-    .connect(
-        'mongodb://localhost:27017/sdcproducts',
-        {useNewUrlParser: true, useUnifiedTopology: true}
-    )
-    .then(() => console.log("connected to database"))
+    .connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log("connected to " + db))
     .catch(err => console.log(err));
 
 require("./routes/productsRoutes")(app);
