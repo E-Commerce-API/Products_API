@@ -1,0 +1,6 @@
+mongoimport --db sdcproducts --collection Styles --type csv --headerline --ignoreBlanks --file /home/scottprovence/rfe3/SDC/ProductsAPI/raw_data/styles.csv
+mongoimport --db sdcproducts --collection Products --type csv --headerline --ignoreBlanks --file /home/scottprovence/rfe3/SDC/ProductsAPI/raw_data/products.csv
+mongoimport --db sdcproducts --collection Photos --type csv --headerline --ignoreBlanks --file /home/scottprovence/rfe3/SDC/ProductsAPI/raw_data/photos.csv
+mongoimport --db sdcproducts --collection Skus --type csv --headerline --ignoreBlanks --file /home/scottprovence/rfe3/SDC/ProductsAPI/raw_data/skus.csv
+mongoimport --db sdcproducts --collection Features --type csv --headerline --ignoreBlanks --file /home/scottprovence/rfe3/SDC/ProductsAPI/raw_data/features.csv
+mongoimport --db sdcproducts --collection Related --type csv --headerline --ignoreBlanks --file /home/scottprovence/rfe3/SDC/ProductsAPI/raw_data/related.csv
