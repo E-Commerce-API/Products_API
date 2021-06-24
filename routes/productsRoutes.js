@@ -33,13 +33,34 @@ module.exports = (app) => {
 
   app.get('/products/:product_id/styles', async (req, res) => {
     const id = req.params.product_id;
-    const styles = await Styles.find({"productId": id});
-    res.send(styles);
+    const styles = await Styles.find({"productId": id}, {"_id": 0, "productId": 0});
+    const photos = await Photos.find({"styleId": styles[0].id});
+    const skus = await Skus.find({"styleId": styles[0].id});
+    const stylesFormatted = styles.map(style => {
+      return {
+        "style_id": style.id,
+        "name": style.name,
+        "original_price": (style.original_price),
+        "sale_price": (style.sale_price),
+        "default?": style['default_style'] === 1 ? true : false,
+        "photos": [],
+        "skus": {}
+      }
+    })
+    const final = {
+      product_id: id,
+      results: stylesFormatted
+    }
+
+
+
+    console.log(final);
+    res.end();
   });
 
   app.get('/products/:product_id/related', async (req, res) => {
     const id = req.params.product_id;
-    const relatedProd = await RelatedProducts.find({"current_product_id": 1}, {"_id": 0, "id": 0, "current_product_id": 0});
+    const relatedProd = await RelatedProducts.find({"current_product_id": id}, {"_id": 0, "id": 0, "current_product_id": 0});
     const relatedProds = relatedProd.map(item => item.related_product_id);
     res.send(relatedProds);
     });

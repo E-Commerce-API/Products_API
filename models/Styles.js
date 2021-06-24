@@ -6,9 +6,9 @@ const stylesSchema = new Schema({
     id: Number,
     productId: Number,
     name: String,
-    salePrice: String,
-    originalPrice: String,
-    isDefault: Boolean,
+    sale_price: Number,
+    original_price: Number,
+    default_style: Number,
 })
 
 const Styles = mongoose.model("Styles", stylesSchema, "Styles");
