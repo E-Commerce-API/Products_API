@@ -35,16 +35,27 @@ module.exports = (app) => {
       .then((styles) => {
         styles.map(async (style) => {
           await Photos.find({"styleId": style.id}, {"_id": 0, "id": 0, "styleId": 0})
-            .then((photo) => {
-              const data = {
-                "style_id": style.id,
-                "name": style.name,
-                "original_price": (style.original_price),
-                "sale_price": (style.sale_price) || null,
-                "default?": style['default_style'] === 1 ? true : false,
-                "photos": photo,
-              }
-              finalData.results.push(data)
+            .then(async (photo) => {
+              await Skus.find({"styleId": style.id})
+                .then((skus) => {
+                  const data = {
+                    "style_id": style.id,
+                    "name": style.name,
+                    "original_price": (style.original_price),
+                    "sale_price": (style.sale_price) || null,
+                    "default?": style['default_style'] === 1 ? true : false,
+                    "photos": photo,
+                    "skus": {}
+                  }
+                  skus.forEach(sku => {
+                    let key = sku.id;
+                    data.skus[key] = {
+                      quantity: sku.quantity,
+                      size: sku.size
+                    }
+                  })
+                  finalData.results.push(data)
+                })
             })
             if (finalData.results.length === styles.length){
               res.send(finalData);
