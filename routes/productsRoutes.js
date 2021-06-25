@@ -7,13 +7,6 @@ let RelatedProducts = require('../models/RelatedProducts');
 
 module.exports = (app) => {
 
-  //************ does this need to be done??? *************
-  // app.get('/products', async (req, res) => {
-  //   await Product.find()
-  //   .then((product) => res.json(product))
-  //   .catch((err) => res.status(400).json(`Error: ${err}`));
-  // });
-
   app.get('/products/:product_id', async (req, res) => {
     const id = req.params.product_id;
     const prod = await Product.find({"id": id}, {"_id": 0})
@@ -33,30 +26,73 @@ module.exports = (app) => {
 
   app.get('/products/:product_id/styles', async (req, res) => {
     const id = req.params.product_id;
-    const styles = await Styles.find({"productId": id}, {"_id": 0, "productId": 0});
-    const photos = await Photos.find({"styleId": styles[0].id});
-    const skus = await Skus.find({"styleId": styles[0].id});
-    const stylesFormatted = styles.map(style => {
-      return {
-        "style_id": style.id,
-        "name": style.name,
-        "original_price": (style.original_price),
-        "sale_price": (style.sale_price),
-        "default?": style['default_style'] === 1 ? true : false,
-        "photos": [],
-        "skus": {}
-      }
-    })
-    const final = {
+
+    const finalData = {
       product_id: id,
-      results: stylesFormatted
-    }
+      results: []
+    };
+    await Styles.find({"productId": id}, {"_id": 0, "productId": 0})
+      .then((styles) => {
+        styles.map(async (style) => {
+          await Photos.find({"styleId": style.id}, {"_id": 0, "id": 0, "styleId": 0})
+            .then((photo) => {
+              const data = {
+                "style_id": style.id,
+                "name": style.name,
+                "original_price": (style.original_price),
+                "sale_price": (style.sale_price) || null,
+                "default?": style['default_style'] === 1 ? true : false,
+                "photos": photo,
+              }
+              finalData.results.push(data)
+            })
+            if (finalData.results.length === styles.length){
+              res.send(finalData);
+            }
+          })
+      })
+
+
+    // const styles = await Styles.find({"productId": id}, {"_id": 0, "productId": 0})
+    // const photos = await Photos.find({"styleId": styles[0].id}, {"_id": 0, "id": 0, "styleId": 0});
+    // const skus = await Skus.find({"styleId": styles[0].id});
 
 
 
-    console.log(final);
-    res.end();
+    // const skusFormatted = skus.map(sku => {
+    //   let obj = {}
+    //   let key = sku.id;
+    //   obj[key] = {
+    //     quantity: sku.quantity,
+    //     size: sku.size
+    //   }
+    //   return obj;
+    // })
+
+    // const photosFormatted = photos.map(photo => {
+    //   return photo;
+    // })
+
+    // const stylesFormatted = styles.map(style => {
+    //   return {
+    //     "style_id": style.id,
+    //     "name": style.name,
+    //     "original_price": (style.original_price),
+    //     "sale_price": (style.sale_price),
+    //     "default?": style['default_style'] === 1 ? true : false,
+    //     "photos": [],
+    //     "skus": {}
+    //   }
+    // })
+
+    // const final = {
+    //   product_id: id,
+    //   results: stylesFormatted
+    // }
+
+    // res.send(skusFormatted);
   });
+
 
   app.get('/products/:product_id/related', async (req, res) => {
     const id = req.params.product_id;

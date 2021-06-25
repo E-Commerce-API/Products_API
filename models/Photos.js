@@ -6,7 +6,7 @@ const photosSchema = new Schema({
   id: Number,
   styleId: Number,
   url: String,
-  thumbnailUrl: String
+  thumbnail_url: String
 })
 
 const Photos = mongoose.model("Photos", photosSchema, "Photos");
