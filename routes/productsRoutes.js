@@ -62,48 +62,7 @@ module.exports = (app) => {
             }
           })
       })
-
-
-    // const styles = await Styles.find({"productId": id}, {"_id": 0, "productId": 0})
-    // const photos = await Photos.find({"styleId": styles[0].id}, {"_id": 0, "id": 0, "styleId": 0});
-    // const skus = await Skus.find({"styleId": styles[0].id});
-
-
-
-    // const skusFormatted = skus.map(sku => {
-    //   let obj = {}
-    //   let key = sku.id;
-    //   obj[key] = {
-    //     quantity: sku.quantity,
-    //     size: sku.size
-    //   }
-    //   return obj;
-    // })
-
-    // const photosFormatted = photos.map(photo => {
-    //   return photo;
-    // })
-
-    // const stylesFormatted = styles.map(style => {
-    //   return {
-    //     "style_id": style.id,
-    //     "name": style.name,
-    //     "original_price": (style.original_price),
-    //     "sale_price": (style.sale_price),
-    //     "default?": style['default_style'] === 1 ? true : false,
-    //     "photos": [],
-    //     "skus": {}
-    //   }
-    // })
-
-    // const final = {
-    //   product_id: id,
-    //   results: stylesFormatted
-    // }
-
-    // res.send(skusFormatted);
   });
-
 
   app.get('/products/:product_id/related', async (req, res) => {
     const id = req.params.product_id;
@@ -111,12 +70,4 @@ module.exports = (app) => {
     const relatedProds = relatedProd.map(item => item.related_product_id);
     res.send(relatedProds);
     });
-
-  // app.get('/api/test', async (req, res) => {
-  //   const style = await Styles.find({"productId": 6});
-  //   const photos = await Photos.find({"styleId": 5});
-  //   const product = await Product.find({"id": 1});
-  //   // console.log(style)
-  //   res.send(product);
-  //   })
 };
