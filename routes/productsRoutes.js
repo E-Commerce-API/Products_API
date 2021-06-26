@@ -69,5 +69,5 @@ module.exports = (app) => {
     const relatedProd = await RelatedProducts.find({"current_product_id": id}, {"_id": 0, "id": 0, "current_product_id": 0});
     const relatedProds = relatedProd.map(item => item.related_product_id);
     res.send(relatedProds);
-    });
+  });
 };

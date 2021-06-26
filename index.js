@@ -14,7 +14,7 @@ mongoose
 
 require("./routes/productsRoutes")(app);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log("server is up and running on port: " + port);
 });
