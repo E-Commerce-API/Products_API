@@ -20,7 +20,8 @@
   "homepage": "https://github.com/SDC-Jupiter/ProductsAPI#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.12.14"
+    "mongoose": "^5.12.14",
+    "newrelic": "^7.5.1"
   },
   "devDependencies": {
     "chai": "^4.3.4",
