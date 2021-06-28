@@ -1,0 +1,34 @@
+db.Products.aggregate([{
+  $lookup: {
+    from: 'Features',
+    localField: 'id',
+    foreignField: 'product_id',
+    as: 'features',
+  }
+}, {
+  $out: 'AllProducts'
+}])
+
+---------------------------------------------
+
+db.Styles.aggregate([
+  {$lookup: {
+    from: 'Photos',
+    localField: 'id',
+    foreignField: 'styleId',
+    as: 'photos'
+  }},
+  {$unwind: {
+    path: '$Photos',
+    preserveNullAndEmptyArrays: true
+  }},
+  {$lookup: {
+    from: 'Skus',
+    localField: 'id',
+    foreignField: 'styleId',
+    as: 'skus'
+  }},
+  {$out: 'AllStyles'}
+])
+
+

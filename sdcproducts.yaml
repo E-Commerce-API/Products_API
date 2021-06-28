@@ -6,4 +6,4 @@ config:
 scenarios:
   - flow:
     - get:
-        url: "/products/970001"
+        url: "/products/960001"
