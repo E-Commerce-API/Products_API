@@ -1,4 +1,5 @@
 let Product = require('../models/Products');
+let AllProducts = require('../models/AllProducts');
 let Styles = require('../models/Styles');
 let Photos = require('../models/Photos');
 let Skus = require('../models/Skus');
@@ -9,19 +10,25 @@ module.exports = (app) => {
 
   app.get('/products/:product_id', async (req, res) => {
     const id = req.params.product_id;
-    const prod = await Product.find({"id": id}, {"_id": 0})
-    const feature = await Features.find({"product_id": Number(id)}, {"_id": 0, "id": 0, "product_id": 0})
+    // const prod = await Product.find({"id": id}, {"_id": 0})
+    // const feature = await Features.find({"product_id": Number(id)}, {"_id": 0, "id": 0, "product_id": 0})
 
-    const final = [{
-      "id": prod[0].id,
-      "name": prod[0].name,
-      "slogan": prod[0].slogan,
-      "description": prod[0].description,
-      "category": prod[0].category,
-      "default_price": prod[0].default_price,
-      "features": feature
-    }]
-    res.send(final);
+    // const final = [{
+    //   "id": prod[0].id,
+    //   "name": prod[0].name,
+    //   "slogan": prod[0].slogan,
+    //   "description": prod[0].description,
+    //   "category": prod[0].category,
+    //   "default_price": prod[0].default_price,
+    //   "features": feature
+    // }]
+    // res.send(final);
+    const prod = await AllProducts.find(
+      {"id": id},
+      {"_id": 0, "features._id": 0, "features.id": 0, "features.product_id": 0}
+    );
+    res.send(prod);
+
   });
 
   app.get('/products/:product_id/styles', async (req, res) => {
