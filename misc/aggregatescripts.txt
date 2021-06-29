@@ -28,6 +28,10 @@ db.Styles.aggregate([
     foreignField: 'styleId',
     as: 'skus'
   }},
+  {$unwind: {
+    path: '$Skus',
+    preserveNullAndEmptyArrays: true
+  }},
   {$out: 'AllStyles'}
 ])
 
