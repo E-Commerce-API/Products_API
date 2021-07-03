@@ -36,3 +36,12 @@ db.Styles.aggregate([
 ])
 
 
+mongoexport --host localhost --db sdcproducts --collection AllPhotos --csv --out AllPhotos.csv
+
+mongoexport --host localhost:27017 --db sdcproducts --collection AllStyles --type=csv --out /home/scottprovence/AllStyles.csv --fields id,productId,name,sale_price,original_price,default_style,photos,skus
+
+
+/home/scottprovence/rfe3/SDC/ProductsAPI/dump/sdcproducts
+
+
+

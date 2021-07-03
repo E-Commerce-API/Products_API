@@ -2,8 +2,8 @@ config:
   target: "http://localhost:3001"
   phases:
     - duration: 60
-      arrivalRate: 1
+      arrivalRate: 800
 scenarios:
   - flow:
     - get:
-        url: "/products/1000001/styles"
+        url: "/products/980001/styles"
