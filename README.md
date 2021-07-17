@@ -1,5 +1,6 @@
+# Ratings & Reviews API for E-Commerce Website
 
-# System Design Capstone
+## Overview
 
 The goal was to replace an existing API with a back end system that can support the full data set for
 an E-commerce site that can scale to meet the demands of production traffic.
@@ -31,4 +32,3 @@ Utilized AWS load balancer to increase traffic up to 1600 requests per second wh
 ## Author
 
 - [Scott Provence](https://github.com/scopro220/)
-
