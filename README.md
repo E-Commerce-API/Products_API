@@ -73,6 +73,14 @@ Implemented MongoDB [pipeline aggregation](https://docs.mongodb.com/manual/core/
 
 Utilized AWS load balancer to increase traffic up to 1600 requests per second while maintaining over 99% success rate.
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .config file
+
+`LICENSE_KEY`
+
+`NEW_RELIC_APP_NAME`
+
 ## Testing Results
 
 ![Imgur](https://i.imgur.com/23QHyHP.png)
