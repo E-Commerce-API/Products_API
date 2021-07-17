@@ -17,6 +17,56 @@ an E-commerce site that can scale to meet the demands of production traffic.
 
 **Production Stress Testing:** [loader.io](https://loader.io/)
 
+## API Reference
+
+### Get item
+
+```http
+  GET /products/:product_id
+```
+
+| Parameter    | Type     | Description                            |
+| :----------- | :------- | :------------------------------------- |
+| `product_id` | `string` | **Required**. Fetch item of product_id |
+
+#### Reponse
+
+```http
+  Status: 200 OK
+```
+
+### Get item
+
+```http
+  GET /products/:product_id/styles
+```
+
+| Parameter    | Type     | Description                              |
+| :----------- | :------- | :--------------------------------------- |
+| `product_id` | `string` | **Required**. Fetch styles of product_id |
+
+#### Reponse
+
+```http
+  Status: 200 OK
+```
+
+### Get item
+
+```http
+  GET /products/:product_id/related
+```
+
+| Parameter    | Type     | Description                                        |
+| :----------- | :------- | :------------------------------------------------- |
+| `product_id` | `string` | **Required**. Fetch related products of product_id |
+
+#### Reponse
+
+```http
+  Status: 200 OK
+```
+
 ## Optimizations
 
 Implemented MongoDB [pipeline aggregation](https://docs.mongodb.com/manual/core/aggregation-pipeline/) consolidating collections to a single collection reducing complicated queries.
